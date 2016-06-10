@@ -1,0 +1,103 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/tiy-styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+
+<a href="/?lectureTag=weekone">Week One</a>
+<a href="/?lectureTag=weektwo">Week Two</a>
+<br><br>
+
+<a href="/">All</a>
+<a href="/?lectureCategory=primitivetype">Primitive Type</a>
+<a href="/?lectureCategory=userinput">User Input</a>
+<a href="/?lectureCategory=thread">Thread</a>
+<a href="/?lectureCategory=dds">DDS</a>
+<a href="/?lectureCategory=sql">SQL</a>
+<a href="/?lectureCategory=nosql">No SQL</a>
+<a href="/?lectureCategory=parse">Parse</a>
+<a href="/?lectureCategory=looping">Looping</a>
+<br><br>
+
+<form action="/searchByLecture" method="get">
+    <input type="text" placeholder="Search" name="search"/>
+    <button type="submit">Search</button>
+</form>
+<br><br>
+
+<form action="/add-note" method="post">
+    <select name="lectureTag">
+        <option selected disabled>Date</option>
+        <option value="weekone">Week One</option>
+        <option value="weektwo">Week Two</option>
+        <option value="WEEK_THREE">Week Three</option>
+        <option value="WEEK_FOUR">Week Four</option>
+        <option value="WEEK_FIVE">Week Five</option>
+        <option value="WEEK_SIX">Week Six</option>
+        <option value="WEEK_SEVEN">Week Seven</option>
+        <option value="WEEK_EIGHT">Week Eight</option>
+        <option value="WEEK_NINE">Week Nine</option>
+        <option value="WEEK_TEN">Week Ten</option>
+        <option value="WEEK_ELEVEN">Week Eleven</option>
+        <option value="WEEK_TWELVE">Week Twelve</option>
+    </select>
+    <select name="lectureCategory">
+        <option selected disabled>Category</option>
+        <option value="primitivetype">Primitive Type</option>
+        <option value="userinput">User Input</option>
+        <option value="thread: ">Thread</option>
+        <option value="dds">Dynamic Data Structure</option>
+        <option value="sql">SQL</option>
+        <option value="nosql">No SQL</option>
+        <option value="parse">Parse</option>
+        <option value="loop">Loop</option>
+        <option value="javascriptcss">Javascript/CSS</option>
+        <option value="inheritance">Inheritance</option>
+        <option value="baseline">Baseline</option>
+        <option value="unittesting">Unit Test</option>
+        <option value="javafx">JavaFX</option>
+        <option value="libraries">Libraries</option>
+        <option value="getters&setters">Getters & Setters</option>
+        <option value="sockets">Sockets</option>
+        <option value="github">GitHub</option>
+        <option value="batchfile">Batch File</option>
+        <option value="binary">Binary</option>
+        <option value="classes">Classes</option>
+    </select>
+    <input type="text" placeholder="Enter Lecture Note" name="lectureNote"/>
+    <button type="submit">Add Note</button>
+</form>
+
+<ol>
+    {{#notes}}
+    <li>
+        {{lectureNote}}
+        {{#priority}}
+        [Review Again!!]
+        {{/priority}}
+        {{^priority}}
+        [Review!]
+        {{/priority}}
+        <a href="/toggle?noteID={{id}}">toggle</a> <a href="/delete?noteID={{id}}">delete</a>
+    </li>
+    {{/notes}}
+</ol>
+
+{{/user}}
+</body>
+</html>

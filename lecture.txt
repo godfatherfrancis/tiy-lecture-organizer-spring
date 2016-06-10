@@ -1,0 +1,15 @@
+Lecture Organizer
+
+ spring
+ based on gametracker baseline
+  build database
+  add classes
+  login: web 1.0
+  user
+  add lecture note: JSON
+  MVC - Model View Controller
+ 
+ Unit Test CRUD notes
+ 
+ 
+ 
